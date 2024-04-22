@@ -12,7 +12,6 @@ def get_nutrion_by_id(id, api_key):
     data = response.json()
     return data
 
-ingredients = "apples,+flour,+sugar"
 numberofrecipes = 1
 api_key = "804caf8927fb46e88c6334ef4c298e98"
 rank = 1

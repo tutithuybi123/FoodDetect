@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>THCS Văn Lang's Food Detect Bot</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='style.css') }}" >
+    </head>
+
+    <body>
+        <!--box chính-->
+        <div class="main_container">
+            
+            <div class="header">
+                <h1>Auto Recipes Detect Bot</h1>
+            </div>
+
+            <!--tìm nguyên liệu-->
+            <div class="trai"> 
+                <div class="timkiemnguyenlieu">
+                    <input type="text" placeholder="Nguyên liệu"></input>
+                    <!--thay .. -->
+                    <button class="timkiem" type="button" onclick="">Submit</button>
+                </div>
+                <!--chọn chế độ-->
+                <div class="mode">
+                
+                </div>
+
+            </div>
+
+                <!--chup anh, up anh-->
+            <div class="phai">
+
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <!--ô hiện món ăn (thay link bằng link ảnh)-->
+            <div class="foodbox">
+                <div class="hang1">
+                    <img src= {{link1}} alt="Món ăn 1">
+                    <img src= {{link2}} alt="Món ăn 2">
+                    <img src= {{link3}} alt="Món ăn 3">
+                </div>
+                <div class="hang2">
+                    <img src="link" alt="Món ăn 4">
+                    <img src="link" alt="Món ăn 5">
+                    <img src="link" alt="Món ăn 6">
+                </div>
+                <div class="hang3">
+                    <img src="link" alt="Món ăn 7">
+                    <img src="link" alt="Món ăn 8">
+                    <img src="link" alt="Món ăn 9">
+                </div>
+            </div>
+            
+
+
+        </div>
+    </body>
+</html>
