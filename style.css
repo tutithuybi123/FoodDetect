@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap');
+.imgscreen
+{
+    width: 550px;
+    height: 350px;
+    background-color: #BFEA7C;
+    position: relative;
+    left: 780px;
+    top: -1080px;
+}
+
+.searchbox
+{
+    position: relative;
+    left: 100px;
+    width: 400px;
+    height: 33px;
+    top: -520px;
+    font-family: Lemonada;
+    font-weight:bolder;
+}
+.searchbtn
+{
+    position: relative;
+    left: 100px;
+    top: -520px;
+    height: 35px;
+    width: 90px;
+    font-family: Lemonada;
+    font-weight:bolder;
+}
+.modeselect
+{
+    position: relative;
+    left: 1160px;
+    font-family: Lemonada;
+    font-weight:bolder;
+    top: -630px;
+}
+.imgbox
+{
+    position: relative;
+    left: 10px ;
+    top: 10px;
+    background-color: #BFEA7C;
+    width: 750px;
+    height: 590px;
+}
+.cap
+{
+    width: 150px;
+    height: 50px;
+    position: relative;
+    bottom: 650px;
+    left: 1000px;
+    font-family: Lemonada;
+    font-weight:bolder;
+}
+.image1
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -580px;
+    left: 110px;
+}
+.image2
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -580px;
+    left: 140px;
+}
+.image3
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -580px;
+    left: 170px;
+}
+.image4
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -560px;
+    left: 110px;
+}
+.image5
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -560px;
+    left: 140px;
+}
+.image6
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -560px;
+    left: 170px;
+}
+.image7
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -540px;
+    left: 110px;
+}
+.image8
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -540px;
+    left: 140px;
+}
+.image9
+{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: -540px;
+    left: 170px;
+}
+body
+{
+    background-color: #FFF67E;
+}
+.author
+{
+    position: relative;
+    bottom: 600px;
+}
