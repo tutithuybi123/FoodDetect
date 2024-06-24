@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VFDB demo 1.1</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="import" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  </head>
+  <body>
+    <div class="mainbox">
+      <div class="imgbox"></div>
+      <div class="header">
+        <input class="searchbox" type="text" placeholder="Nguyên liệu...">
+        <button class="searchbtn" onclick="recipes()">Tìm kiếm</button>
+        <div class="modeselect">
+          <input type="radio" name="mode" id="image-mode" value="image" onchange="sendMode('image')">Image Mode <br>
+          <input type="radio" name="mode" id="webcam-mode" value="webcam" onchange="sendMode('webcam')">Webcam Mode
+        </div>
+        <script>
+          var stream;
+          var video = document.getElementById('videoElement');
+          function sendMode(mode) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/modeselect');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+              if (xhr.status === 200) {
+                console.log('Mode sent successfully!');
+                if (mode == "webcam") {
+                  imgscreen = document.getElementById('img-screen');
+                  imgscreen.src = "";
+                  startCamera();
+                } else {
+                  imgscreen = document.getElementById('img-screen');
+                  imgscreen.src = "";
+                  if (stream) {
+                      var tracks = stream.getTracks();
+                      tracks.forEach(function(track) {
+                        track.stop();
+                      });
+                      var video = document.getElementById('videoElement');
+                      video.srcObject = null;
+                      stream = null;
+
+                  }
+                }
+              } else {
+                console.error('Failed to send mode:', xhr.statusText);
+              }
+            };
+            xhr.onerror = function() {
+              console.error('Failed to send mode:', xhr.statusText);
+            };
+            xhr.send(JSON.stringify({
+              mode: mode
+            }));
+          }
+
+          function startCamera() {
+            navigator.mediaDevices.getUserMedia({video: true})
+            .then(function (mediaStream) {
+              var video = document.getElementById('videoElement');
+              var imgscreen = document.getElementById('img-screen');
+              video.srcObject = mediaStream;
+              video.style.height = toString(imgscreen.offsetHeight) + 'px';
+              video.style.width = toString(imgscreen.offsetWidth) + 'px';
+              stream = mediaStream;
+            })
+            .catch(function (error) {
+              console.log('Error accessing the camera:', error);
+            });
+          }
+        </script>
+      </div>
+      <div class="blank">
+        <br>
+        <br>
+      </div>
+      <div class="imgw1">
+        <a id="link1" href="#" target="_blank">
+          <img id="image1" class="image1" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link2" href="#" target="_blank">
+          <img id="image2" class="image2" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link3" href="#" target="_blank">
+          <img id="image3" class="image3" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+      </div>
+      <div class="imgw2">
+        <a id="link4" href="#" target="_blank">
+          <img id="image4" class="image4" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link5" href="#" target="_blank">
+          <img id="image5" class="image5" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link6" href="#" target="_blank">
+          <img id="image6" class="image6" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+      </div>
+      <div class="imgw3">
+        <a id="link7" href="#" target="_blank">
+          <img id="image7" class="image7" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link8" href="#" target="_blank">
+          <img id="image8" class="image8" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link9" href="#" target="_blank">
+          <img id="image9" class="image9" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+      </div>
+      <div class="cap">
+        <button id="capture-button" type="button" onclick="photo()">
+          <font face="Lemonada">Take/Select photo</font>
+        </button>
+      </div>
+      <script>
+        function photo() {
+          var mode = document.querySelector('input[name="mode"]:checked').value;
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/takeselectphoto');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              if (response.success) {
+                var fileLocation = response.file_location;
+                if (fileLocation === 'webcam') {
+                  var video = document.getElementById('videoElement');
+                  var imageElement = document.getElementById('img-screen');
+                  var canvas = document.createElement('canvas');
+                  canvas.width = video.videoWidth;
+                  canvas.height = video.videoHeight;
+                  var context = canvas.getContext('2d');
+                  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                  var imageDataURL = canvas.toDataURL('image/png');
+                  console.log('Captured image (Base64):', imageDataURL);
+                  imageElement.src = imageDataURL;
+                  imageElement.width = 550;
+                  imageElement.height = 350;
+
+                  var tracks = stream.getTracks();
+                  tracks.forEach(function(track) {
+                    track.stop();
+                  });
+                  video.srcObject = null;
+                  stream = null;
+                  incredients(imageDataURL);
+                } else {
+                  var imgElement = document.getElementById('img-screen');
+                  imgElement.src = 'http://localhost:8000/' + fileLocation;
+                  imgElement.width = 550;
+                  imgElement.height = 350;
+                  incredients(fileLocation);
+                }
+              } else {
+                console.error('Failed to take select photo:', response.error);
+              }
+            } else {
+              console.error('Failed to take select photo:', xhr.statusText);
+            }
+          };
+          xhr.onerror = function() {
+            console.error('Failed to take select photo:', xhr.statusText);
+          };
+          var data = JSON.stringify({
+            'mode': mode
+          });
+          xhr.send(data);
+        }
+
+        function incredients(base64) {
+            var mode = document.querySelector('input[name="mode"]:checked').value;
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/incredients');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              if (response.success) {
+                var data = response.data;
+                var modifiedValue = data.replace(/\+/g, "");
+                var inputElement = document.querySelector('.searchbox');
+                inputElement.value = modifiedValue;
+              } else {
+                console.error('Get Incredients Failed:', response.error);
+              }
+            } else {
+              console.error('Get Incredients Failed:', xhr.statusText);
+            }
+          };
+          xhr.onerror = function() {
+            console.error('Get Incredients Failed:', xhr.statusText);
+          };
+          var data = JSON.stringify({
+            'image': base64,
+            'mode': mode
+          });
+          xhr.send(data);
+        }
+        function recipes() {
+            var incredients = document.querySelector('.searchbox').value;
+            incredients = incredients.replace(/\s+/g, '').replace(/,/g, ',+');
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/recipes');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              if (response.success) {
+                const srcs = response.srcs;
+                const links = response.links;
+                const image1 = document.getElementById("image1");
+                const image2 = document.getElementById("image2");
+                const image3 = document.getElementById("image3");
+                const image4 = document.getElementById("image4");
+                const image5 = document.getElementById("image5");
+                const image6 = document.getElementById("image6");
+                const image7 = document.getElementById("image7");
+                const image8 = document.getElementById("image8");
+                const image9 = document.getElementById("image9");
+                const link1 = document.getElementById("link1");
+                const link2 = document.getElementById("link2");
+                const link3 = document.getElementById("link3");
+                const link4 = document.getElementById("link4");
+                const link5 = document.getElementById("link5");
+                const link6 = document.getElementById("link6");
+                const link7 = document.getElementById("link7");
+                const link8 = document.getElementById("link8");
+                const link9 = document.getElementById("link9");
+                for (let i = 1; i <= 9; i++) {
+                  const image = eval("image" + i);
+                  image.src = srcs[i - 1];
+                }
+                for (let i = 1; i <= 9; i++) {
+                  const link = eval("link" + i);
+                  link.href = links[i - 1];
+                }
+              } else {
+                console.error('Get Recipes Failed:', response.error);
+              }
+            } else {
+              console.error('Get Recipes Failed:', xhr.statusText);
+            }
+          };
+          xhr.onerror = function() {
+            console.error('Get Recipes Failed:', xhr.statusText);
+          };
+          var data = JSON.stringify({
+            'ingredients': incredients
+          });
+          console.log(incredients);
+          xhr.send(data);
+        }
+      </script>
+      <div class="imgscreen">
+        <img id="img-screen" src="" />
+        <video id="videoElement" autoplay></video>
+      </div>
+    </div>
+  </body>
+</html>

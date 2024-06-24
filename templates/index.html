@@ -1,65 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <head>
-        <title>THCS Văn Lang's Food Detect Bot</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='style.css') }}" >
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA | Cooking Assistant</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="mainbox">
+        <div class="searchBox">
 
-    <body>
-        <!--box chính-->
-        <div class="main_container">
-            
-            <div class="header">
-                <h1>Auto Recipes Detect Bot</h1>
-            </div>
+            <input class="searchInput" type="text" name="" placeholder="Tìm kiếm...">
+            <button class="searchButton" onclick="recipes()" href="#">
+                   
+                  
 
-            <!--tìm nguyên liệu-->
-            <div class="trai"> 
-                <div class="timkiemnguyenlieu">
-                    <input type="text" placeholder="Nguyên liệu"></input>
-                    <!--thay .. -->
-                    <button class="timkiem" type="button" onclick="">Submit</button>
-                </div>
-                <!--chọn chế độ-->
-                <div class="mode">
-                
-                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+  <g clip-path="url(#clip0_2_17)">
+    <g filter="url(#filter0_d_2_17)">
+      <path d="M23.7953 23.9182L19.0585 19.1814M19.0585 19.1814C19.8188 18.4211 20.4219 17.5185 20.8333 16.5251C21.2448 15.5318 21.4566 14.4671 21.4566 13.3919C21.4566 12.3167 21.2448 11.252 20.8333 10.2587C20.4219 9.2653 19.8188 8.36271 19.0585 7.60242C18.2982 6.84214 17.3956 6.23905 16.4022 5.82759C15.4089 5.41612 14.3442 5.20435 13.269 5.20435C12.1938 5.20435 11.1291 5.41612 10.1358 5.82759C9.1424 6.23905 8.23981 6.84214 7.47953 7.60242C5.94407 9.13789 5.08145 11.2204 5.08145 13.3919C5.08145 15.5634 5.94407 17.6459 7.47953 19.1814C9.01499 20.7168 11.0975 21.5794 13.269 21.5794C15.4405 21.5794 17.523 20.7168 19.0585 19.1814Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"></path>
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_d_2_17" x="-0.418549" y="3.70435" width="29.7139" height="29.7139" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+      <feOffset dy="4"></feOffset>
+      <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+      <feComposite in2="hardAlpha" operator="out"></feComposite>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2_17"></feBlend>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2_17" result="shape"></feBlend>
+    </filter>
+    <clipPath id="clip0_2_17">
+      <rect width="28.0702" height="28.0702" fill="white" transform="translate(0.403503 0.526367)"></rect>
+    </clipPath>
+  </defs>
+</svg>
+                     
 
-            </div>
-
-                <!--chup anh, up anh-->
-            <div class="phai">
-
-                </div>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-
-            <!--ô hiện món ăn (thay link bằng link ảnh)-->
-            <div class="foodbox">
-                <div class="hang1">
-                    <img src= {{link1}} alt="Món ăn 1">
-                    <img src= {{link2}} alt="Món ăn 2">
-                    <img src= {{link3}} alt="Món ăn 3">
-                </div>
-                <div class="hang2">
-                    <img src="link" alt="Món ăn 4">
-                    <img src="link" alt="Món ăn 5">
-                    <img src="link" alt="Món ăn 6">
-                </div>
-                <div class="hang3">
-                    <img src="link" alt="Món ăn 7">
-                    <img src="link" alt="Món ăn 8">
-                    <img src="link" alt="Món ăn 9">
-                </div>
-            </div>
-            
-
-
+            </button>
         </div>
-    </body>
+    </div>
+    <div class="checkbox-wrapper-35">
+        <input value="private" name="switch" id="switch" type="checkbox" class="switch" onclick="sendMode(this.checked ? 'webcam' : 'image')">
+        <label for="switch">
+          <span class="switch-x-text">This is </span>
+          <span class="switch-x-toggletext">
+            <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Img</span>
+            <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Cam</span>
+          </span>
+        </label>
+      </div>
+    <div class="src-box">
+        <div class="card">
+            <div class="tools">
+              <div class="circle">
+                <span class="red box"></span>
+              </div>
+              <div class="circle">
+                <span class="yellow box"></span>
+              </div>
+              <div class="circle">
+                <span class="green box"></span>
+              </div>
+            </div>
+            <div class="card__content">
+            </div>
+            <style>
+              #img-screen {
+                display: block;
+                margin: 0 auto;
+              }
+            </style>
+            <img id="img-screen" src="" />
+            <video id="videoElement" width="635" height="340" autoplay></video>
+          </div>
+    </div>
+    <button id="capture-button" type="button" onclick="photo()" class="take"> Take!
+    </button>
+    <div class="logo">
+      <img class="logo-img" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448431804_1155319872377281_16124522021793633_n.jpg?stp=dst-jpg_s206x206&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFy2-Kf-ouYzaW_3sT39h-_w0DGDIrMzl3DQMYMiszOXSz4SzUNt9yBsz3xQafdB3aCL8V2PWt0JmuyvHifMJK3&_nc_ohc=-qkFFyz-0xcQ7kNvgFA5EvA&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QGEGYPVig5a2TO_Q8-akHdInGxQBOtCJn8unsHHil_wXA&oe=66A0F3F2" alt="logo">
+    </div>
+    <div class="copyright">
+      @Designed and develop by Van Lang
+    </div>
+
+    <div class="res">
+      <div class="imgw1">
+        <a id="link1" href="#" target="_blank">
+          <img id="image1" class="image1" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link2" href="#" target="_blank">
+          <img id="image2" class="image2" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link3" href="#" target="_blank">
+          <img id="image3" class="image3" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+      </div>
+      <div class="imgw2">
+        <a id="link4" href="#" target="_blank">
+          <img id="image4" class="image4" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link5" href="#" target="_blank">
+          <img id="image5" class="image5" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link6" href="#" target="_blank">
+          <img id="image6" class="image6" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+      </div>
+      <div class="imgw3">
+        <a id="link7" href="#" target="_blank">
+          <img id="image7" class="image7" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link8" href="#" target="_blank">
+          <img id="image8" class="image8" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+        <a id="link9" href="#" target="_blank">
+          <img id="image9" class="image9" src="https://cdn.photoroom.com/v1/assets-cached.jpg?path=backgrounds_v3/white/Photoroom_white_background_extremely_fine_texture_only_white_co_d4046f3b-0a21-404a-891e-3f8d37c5aa94.jpg" alt="nền ảnh">
+        </a>
+      </div>
+    </div>
+
+    <script>
+      var stream;
+      var video = document.getElementById('videoElement');
+      function sendMode(mode) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/modeselect');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            console.log('Mode sent successfully!');
+            if (mode == "webcam") {
+              imgscreen = document.getElementById('img-screen');
+              imgscreen.src = "";
+              startCamera();
+            } else {
+              imgscreen = document.getElementById('img-screen');
+              imgscreen.src = "";
+              if (stream) {
+                  var tracks = stream.getTracks();
+                  tracks.forEach(function(track) {
+                    track.stop();
+                  });
+                  var video = document.getElementById('videoElement');
+                  video.srcObject = null;
+                  stream = null;
+
+              }
+            }
+          } else {
+            console.error('Failed to send mode:', xhr.statusText);
+          }
+        };
+        xhr.onerror = function() {
+          console.error('Failed to send mode:', xhr.statusText);
+        };
+        xhr.send(JSON.stringify({
+          mode: mode
+        }));
+      }
+
+      function startCamera() {
+        navigator.mediaDevices.getUserMedia({video: true})
+        .then(function (mediaStream) {
+          var video = document.getElementById('videoElement');
+          var imgscreen = document.getElementById('img-screen');
+          video.srcObject = mediaStream;
+          console.log('Video source object:', video.srcObject);
+          stream = mediaStream;
+        })
+        .catch(function (error) {
+          console.log('Error accessing the camera:', error);
+        });
+      }
+    function photo() {
+      var mode = (document.getElementById('switch').checked)? "webcam" : "image";
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/takeselectphoto');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            var fileLocation = response.file_location;
+            if (fileLocation === 'webcam') {
+              var video = document.getElementById('videoElement');
+              var imageElement = document.getElementById('img-screen');
+              var canvas = document.createElement('canvas');
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              var context = canvas.getContext('2d');
+              context.drawImage(video, 0, 0, canvas.width, canvas.height);
+              var imageDataURL = canvas.toDataURL('image/png');
+              console.log('Captured image (Base64):', imageDataURL);
+              imageElement.src = imageDataURL;
+              imageElement.width = 550;
+              imageElement.height = 350;
+
+              var tracks = stream.getTracks();
+              tracks.forEach(function(track) {
+                track.stop();
+              });
+              video.srcObject = null;
+              stream = null;
+              incredients(imageDataURL);
+            } else {
+              var imgElement = document.getElementById('img-screen');
+              imgElement.src = 'http://localhost:8000/' + fileLocation;
+              imgElement.width = 550;
+              imgElement.height = 350;
+              incredients(fileLocation);
+            }
+          } else {
+            console.error('Failed to take select photo:', response.error);
+          }
+        } else {
+          console.error('Failed to take select photo:', xhr.statusText);
+        }
+      };
+      xhr.onerror = function() {
+        console.error('Failed to take select photo:', xhr.statusText);
+      };
+      var data = JSON.stringify({
+        'mode': mode
+      });
+      xhr.send(data);
+    }
+
+    function incredients(base64) {
+      var mode = (document.getElementById('switch').checked)? "webcam" : "image";
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/incredients');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            var data = response.data;
+            var modifiedValue = data.replace(/\+/g, "");
+            var inputElement = document.querySelector('.searchInput');
+            inputElement.value = modifiedValue;
+          } else {
+            console.error('Get Incredients Failed:', response.error);
+          }
+        } else {
+          console.error('Get Incredients Failed:', xhr.statusText);
+        }
+      };
+      xhr.onerror = function() {
+        console.error('Get Incredients Failed:', xhr.statusText);
+      };
+      var data = JSON.stringify({
+        'image': base64,
+        'mode': mode
+      });
+      xhr.send(data);
+    }
+    function recipes() {
+        var incredients = document.querySelector('.searchInput').value;
+        incredients = incredients.replace(/\s+/g, '').replace(/,/g, ',+');
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/recipes');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            const srcs = response.srcs;
+            const links = response.links;
+            const image1 = document.getElementById("image1");
+            const image2 = document.getElementById("image2");
+            const image3 = document.getElementById("image3");
+            const image4 = document.getElementById("image4");
+            const image5 = document.getElementById("image5");
+            const image6 = document.getElementById("image6");
+            const image7 = document.getElementById("image7");
+            const image8 = document.getElementById("image8");
+            const image9 = document.getElementById("image9");
+            const link1 = document.getElementById("link1");
+            const link2 = document.getElementById("link2");
+            const link3 = document.getElementById("link3");
+            const link4 = document.getElementById("link4");
+            const link5 = document.getElementById("link5");
+            const link6 = document.getElementById("link6");
+            const link7 = document.getElementById("link7");
+            const link8 = document.getElementById("link8");
+            const link9 = document.getElementById("link9");
+            for (let i = 1; i <= 9; i++) {
+              const image = eval("image" + i);
+              image.src = srcs[i - 1];
+            }
+            for (let i = 1; i <= 9; i++) {
+              const link = eval("link" + i);
+              link.href = links[i - 1];
+            }
+          } else {
+            console.error('Get Recipes Failed:', response.error);
+          }
+        } else {
+          console.error('Get Recipes Failed:', xhr.statusText);
+        }
+      };
+      xhr.onerror = function() {
+        console.error('Get Recipes Failed:', xhr.statusText);
+      };
+      var data = JSON.stringify({
+        'ingredients': incredients
+      });
+      console.log(incredients);
+      xhr.send(data);
+    }
+    </script>
+</body>
 </html>
